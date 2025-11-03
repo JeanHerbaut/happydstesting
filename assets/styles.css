@@ -18,3 +18,34 @@
   font-size: 0.875rem;
   opacity: 0.8;
 }
+
+.tab-with-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.tab-status-badge {
+  border: 2px solid currentColor;
+  border-radius: var(--rounded-btn, 0.5rem);
+  padding: 0.125rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.tab-status-badge--none {
+  color: #dc2626;
+}
+
+.tab-status-badge--progress {
+  color: #ea580c;
+}
+
+.tab-status-badge--complete {
+  color: #16a34a;
+}
+
+.feature-summary {
+  margin-top: 0.5rem;
+}
