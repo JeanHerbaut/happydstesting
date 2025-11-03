@@ -1,0 +1,1678 @@
+{
+  "generatedAt": "2025-11-03T07:55:11.587Z",
+  "features": [
+    {
+      "id": "accessibilite-securite.md::Accessibilité du contenu",
+      "title": "Accessibilité du contenu",
+      "file": "accessibilite-securite.md",
+      "scenarios": [
+        {
+          "id": "accessibilite-securite.md::Accessibilité du contenu::Présence d'un lien d'évitement",
+          "name": "Présence d'un lien d'évitement",
+          "steps": [
+            "Given la page de connexion est affichée",
+            "When le document est chargé",
+            "Then un lien \"Aller au contenu\" précède le contenu principal"
+          ],
+          "status": "N/A",
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "id": "accessibilite-securite.md::En-têtes de sécurité",
+      "title": "En-têtes de sécurité",
+      "file": "accessibilite-securite.md",
+      "scenarios": [
+        {
+          "id": "accessibilite-securite.md::En-têtes de sécurité::Application des en-têtes HTTP",
+          "name": "Application des en-têtes HTTP",
+          "steps": [
+            "When un utilisateur consulte le site",
+            "Then la réponse inclut les en-têtes de sécurité \"X-Frame-Options\", \"X-Content-Type-Options\" et \"Referrer-Policy\""
+          ],
+          "status": "N/A",
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "id": "activites.md::Gestion des activités",
+      "title": "Gestion des activités",
+      "file": "activites.md",
+      "scenarios": [
+        {
+          "id": "activites.md::Gestion des activités::Création d'une activité",
+          "name": "Création d'une activité",
+          "steps": [
+            "Given un administrateur authentifié",
+            "When il renseigne les champs requis",
+            "Then l'activité est enregistrée avec statut planifié"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "activites.md::Gestion des activités::Création d'une activité à confirmer",
+          "name": "Création d'une activité à confirmer",
+          "steps": [
+            "Given un administrateur authentifié",
+            "When il coche l'option \"Activité à confirmer\" lors de la création",
+            "Then l'activité est enregistrée avec statut \"À confirmer\""
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "activites.md::Gestion des activités::Confirmation d'une activité",
+          "name": "Confirmation d'une activité",
+          "steps": [
+            "Given une activité avec statut \"À confirmer\"",
+            "When l'administrateur confirme l'activité",
+            "Then son statut devient \"Planifiée\""
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "activites.md::Gestion des activités::Duplication d'une activité",
+          "name": "Duplication d'une activité",
+          "steps": [
+            "Given une activité existe",
+            "When l'administrateur la duplique",
+            "Then une nouvelle activité identique est créée"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "activites.md::Gestion des activités::Filtre par statut",
+          "name": "Filtre par statut",
+          "steps": [
+            "Given plusieurs activités avec différents statuts",
+            "When l'administrateur filtre par \"Planifiée\"",
+            "Then seules les activités planifiées sont listées"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "activites.md::Gestion des activités::Mise à jour d'une activité",
+          "name": "Mise à jour d'une activité",
+          "steps": [
+            "Given une activité existante",
+            "When l'administrateur modifie ses informations",
+            "Then les changements sont sauvegardés"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "activites.md::Gestion des activités::Nomination d'un gestionnaire",
+          "name": "Nomination d'un gestionnaire",
+          "steps": [
+            "Given une activité sans gestionnaire",
+            "When l'administrateur choisit un administrateur dans la zone \"Gestionnaire\"",
+            "And il confirme avec le bouton \"Nommer gestionnaire\"",
+            "Then la colonne \"Gestionnaire\" de l'activité affiche le nom sélectionné"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "activites.md::Gestion des activités::Changement de gestionnaire",
+          "name": "Changement de gestionnaire",
+          "steps": [
+            "Given une activité avec un gestionnaire nommé",
+            "When l'administrateur sélectionne un autre administrateur dans la zone \"Gestionnaire\"",
+            "And il confirme avec le bouton \"Nommer gestionnaire\"",
+            "Then la colonne \"Gestionnaire\" de l'activité affiche le nouveau nom"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "activites.md::Gestion des activités::Suppression du gestionnaire",
+          "name": "Suppression du gestionnaire",
+          "steps": [
+            "Given une activité avec un gestionnaire nommé",
+            "When l'administrateur sélectionne \"Aucun\" dans la zone \"Gestionnaire\"",
+            "And il confirme avec le bouton \"Nommer gestionnaire\"",
+            "Then la colonne \"Gestionnaire\" de l'activité indique \"Aucun\""
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "activites.md::Gestion des activités::Suppression d'une activité",
+          "name": "Suppression d'une activité",
+          "steps": [
+            "Given une activité existante",
+            "When l'administrateur la supprime",
+            "Then elle n'apparaît plus dans la liste"
+          ],
+          "status": "N/A",
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "id": "activites.md::Quotas de compétences",
+      "title": "Quotas de compétences",
+      "file": "activites.md",
+      "scenarios": [
+        {
+          "id": "activites.md::Quotas de compétences::Définition d'un quota pour une spécialisation",
+          "name": "Définition d'un quota pour une spécialisation",
+          "steps": [
+            "Given une spécialisation requiert trois bénévoles",
+            "When l'administrateur fixe le quota",
+            "Then la valeur du quota est enregistrée"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "activites.md::Quotas de compétences::Alerte lorsque le quota n'est pas atteint",
+          "name": "Alerte lorsque le quota n'est pas atteint",
+          "steps": [
+            "Given une activité nécessite une spécialisation",
+            "And seulement un bénévole qualifié est assigné",
+            "When l'administrateur consulte l'activité",
+            "Then une alerte indique que le quota n'est pas atteint"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "activites.md::Quotas de compétences::Situation où le quota est satisfait",
+          "name": "Situation où le quota est satisfait",
+          "steps": [
+            "Given une activité nécessite une spécialisation",
+            "And le nombre requis de bénévoles qualifiés est atteint",
+            "When l'administrateur consulte l'activité",
+            "Then aucune alerte de quota n'est affichée"
+          ],
+          "status": "N/A",
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "id": "activites.md::Retour d'activité",
+      "title": "Retour d'activité",
+      "file": "activites.md",
+      "scenarios": [
+        {
+          "id": "activites.md::Retour d'activité::Le responsable soumet un feedback une seule fois",
+          "name": "Le responsable soumet un feedback une seule fois",
+          "steps": [
+            "Given un bénévole responsable d'une activité",
+            "When il envoie son retour après l'activité",
+            "Then un second envoi est refusé",
+            "And le formulaire disparaît"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "activites.md::Retour d'activité::Signalement de matériel endommagé",
+          "name": "Signalement de matériel endommagé",
+          "steps": [
+            "Given un bénévole responsable signale un matériel endommagé",
+            "When il soumet le formulaire de retour",
+            "Then une notification est envoyée à l'adresse d'alerte"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "activites.md::Retour d'activité::Consultation du feedback par un administrateur",
+          "name": "Consultation du feedback par un administrateur",
+          "steps": [
+            "Given une activité avec un feedback soumis",
+            "When l'administrateur consulte l'activité",
+            "Then le feedback est affiché"
+          ],
+          "status": "N/A",
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "id": "activites.md::Calendrier des activités",
+      "title": "Calendrier des activités",
+      "file": "activites.md",
+      "scenarios": [
+        {
+          "id": "activites.md::Calendrier des activités::Consultation d'une activité depuis le calendrier",
+          "name": "Consultation d'une activité depuis le calendrier",
+          "steps": [
+            "Given une activité planifiée existe",
+            "When l'utilisateur affiche la vue calendrier",
+            "And il clique sur l'activité dans la vue Mois ou Semaine",
+            "Then une modale affiche les informations de l'activité"
+          ],
+          "status": "N/A",
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "id": "assignations-paiements.md::Assignations",
+      "title": "Assignations",
+      "file": "assignations-paiements.md",
+      "scenarios": [
+        {
+          "id": "assignations-paiements.md::Assignations::Assigner un bénévole à une activité",
+          "name": "Assigner un bénévole à une activité",
+          "steps": [
+            "Given une activité et un bénévole",
+            "When l'administrateur les associe",
+            "Then la participation est enregistrée avec le statut \"Planifié\""
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "assignations-paiements.md::Assignations::Assigner un bénévole malgré un quota atteint",
+          "name": "Assigner un bénévole malgré un quota atteint",
+          "steps": [
+            "Given une activité dont le quota est atteint",
+            "And un bénévole actif sans conflit",
+            "When l'administrateur l'associe",
+            "Then la participation est enregistrée avec le statut \"Planifié\""
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "assignations-paiements.md::Assignations::Retirer un bénévole d'une activité payée",
+          "name": "Retirer un bénévole d'une activité payée",
+          "steps": [
+            "Given une participation \"Facturé\" pour un bénévole",
+            "When l'administrateur retire cette participation",
+            "Then l'opération est refusée",
+            "And le message d'erreur \"errors.volunteer_already_paid\" est affiché"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "assignations-paiements.md::Assignations::Sélection des pilotes selon disponibilité",
+          "name": "Sélection des pilotes selon disponibilité",
+          "steps": [
+            "Given des pilotes ayant répondu « Oui » ou « Non » à la disponibilité",
+            "When l'administrateur ouvre l'assignation",
+            "Then seuls les pilotes disponibles et qualifiés sont sélectionnables",
+            "And les pilotes « Oui » sont listés avec bouton « Assigner » et checkbox « Définir comme responsable »",
+            "And les pilotes « Non » apparaissent grisés avec mention « A répondu négativement à la disponibilité »"
+          ],
+          "status": "N/A",
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "id": "assignations-paiements.md::Gestion des responsables",
+      "title": "Gestion des responsables",
+      "file": "assignations-paiements.md",
+      "scenarios": [
+        {
+          "id": "assignations-paiements.md::Gestion des responsables::Définir un responsable pour une activité",
+          "name": "Définir un responsable pour une activité",
+          "steps": [
+            "Given une activité et un bénévole qualifié",
+            "When l'administrateur l'assigne comme responsable",
+            "Then le bénévole est marqué responsable de l'activité"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "assignations-paiements.md::Gestion des responsables::Retirer le responsable d'une activité",
+          "name": "Retirer le responsable d'une activité",
+          "steps": [
+            "Given une activité avec un responsable",
+            "When l'administrateur retire ce responsable",
+            "Then l'activité n'a plus de responsable"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "assignations-paiements.md::Gestion des responsables::Case responsable désactivée si un responsable existe",
+          "name": "Case responsable désactivée si un responsable existe",
+          "steps": [
+            "Given une activité avec un responsable",
+            "When l'administrateur consulte la fiche de l'activité",
+            "Then la case à cocher \"Responsable\" est désactivée pour les autres bénévoles"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "assignations-paiements.md::Gestion des responsables::Affichage conditionnel du bouton de retrait",
+          "name": "Affichage conditionnel du bouton de retrait",
+          "steps": [
+            "Given une activité avec un responsable",
+            "When l'administrateur consulte l'activité",
+            "Then le bouton pour retirer la responsabilité apparaît uniquement pour les statuts modifiables"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "assignations-paiements.md::Gestion des responsables::Suppression du responsable réinitialise l'interface",
+          "name": "Suppression du responsable réinitialise l'interface",
+          "steps": [
+            "Given une activité avec un responsable",
+            "When l'administrateur retire ce responsable",
+            "Then l'indicateur \"Responsable\" et le bouton de retrait disparaissent"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "assignations-paiements.md::Gestion des responsables::Un seul responsable par activité",
+          "name": "Un seul responsable par activité",
+          "steps": [
+            "Given une activité avec un responsable",
+            "When un autre bénévole est défini comme responsable",
+            "Then seul le dernier bénévole reste responsable"
+          ],
+          "status": "N/A",
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "id": "assignations-paiements.md::Statut de dotation",
+      "title": "Statut de dotation",
+      "file": "assignations-paiements.md",
+      "scenarios": [
+        {
+          "id": "assignations-paiements.md::Statut de dotation::Activité sans quotas",
+          "name": "Activité sans quotas",
+          "steps": [
+            "Given une activité sans quota global ni quotas de spécialisation",
+            "When un bénévole est assigné",
+            "Then le champ \"staffing_status\" est \"Non défini\""
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "assignations-paiements.md::Statut de dotation::Quota global sans quotas de spécialisation",
+          "name": "Quota global sans quotas de spécialisation",
+          "steps": [
+            "Given une activité avec un quota global de 1",
+            "When un bénévole est assigné",
+            "Then le champ \"staffing_status\" est \"Complet\""
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "assignations-paiements.md::Statut de dotation::Quotas à atteindre",
+          "name": "Quotas à atteindre",
+          "steps": [
+            "Given une activité avec des quotas de spécialisation mais sans quota global",
+            "When tous les quotas ne sont pas remplis",
+            "Then le champ \"staffing_status\" est \"Incomplet\""
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "assignations-paiements.md::Statut de dotation::Quotas remplis",
+          "name": "Quotas remplis",
+          "steps": [
+            "Given une activité avec un quota global de 2",
+            "And des quotas de spécialisation totalisant 2",
+            "When deux bénévoles qualifiés sont assignés",
+            "Then le champ \"staffing_status\" est \"Complet\""
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "assignations-paiements.md::Statut de dotation::Dépassement des quotas",
+          "name": "Dépassement des quotas",
+          "steps": [
+            "Given une activité avec un quota global de 2",
+            "When trois bénévoles sont assignés",
+            "Then le champ \"staffing_status\" est \"Sureffectif\""
+          ],
+          "status": "N/A",
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "id": "assignations-paiements.md::Paiement des activités",
+      "title": "Paiement des activités",
+      "file": "assignations-paiements.md",
+      "scenarios": [
+        {
+          "id": "assignations-paiements.md::Paiement des activités::Payer une participation",
+          "name": "Payer une participation",
+          "steps": [
+            "Given une activité terminée avec un bénévole \"Planifié\"",
+            "When l'administrateur enregistre le paiement",
+            "Then le statut de la participation devient \"Facturé\""
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "assignations-paiements.md::Paiement des activités::Enregistrer un paiement de réservation",
+          "name": "Enregistrer un paiement de réservation",
+          "steps": [
+            "Given une activité planifiée",
+            "When l'administrateur saisit le paiement de réservation",
+            "Then le montant de réservation est sauvegardé pour l'activité"
+          ],
+          "status": "N/A",
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "id": "assignations-paiements.md::Bulletins de salaire",
+      "title": "Bulletins de salaire",
+      "file": "assignations-paiements.md",
+      "scenarios": [
+        {
+          "id": "assignations-paiements.md::Bulletins de salaire::Création et validation d'un bulletin",
+          "name": "Création et validation d'un bulletin",
+          "steps": [
+            "Given un administrateur authentifié et un bénévole",
+            "When il crée un bulletin avec des données valides",
+            "Then le bulletin est enregistré",
+            "And les champs requis sont validés"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "assignations-paiements.md::Bulletins de salaire::Mise à jour d'un bulletin",
+          "name": "Mise à jour d'un bulletin",
+          "steps": [
+            "Given un bulletin existant",
+            "When l'administrateur modifie les montants",
+            "Then les changements sont sauvegardés"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "assignations-paiements.md::Bulletins de salaire::Affichage du détail des activités dans le modal de salaire",
+          "name": "Affichage du détail des activités dans le modal de salaire",
+          "steps": [
+            "Given un bulletin lié à une activité",
+            "When l'administrateur consulte le modal des salaires",
+            "Then le détail de l'activité est affiché"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "assignations-paiements.md::Bulletins de salaire::Totaux calculés et liens d'édition",
+          "name": "Totaux calculés et liens d'édition",
+          "steps": [
+            "Given un bulletin avec lignes de paiement",
+            "When l'administrateur consulte le bulletin",
+            "Then les totaux sont calculés",
+            "And des liens permettent d'éditer ou commenter le bulletin"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "assignations-paiements.md::Bulletins de salaire::Recalculer un bulletin après modification d'activité",
+          "name": "Recalculer un bulletin après modification d'activité",
+          "steps": [
+            "Given un bulletin généré à partir d'une activité déjà payée",
+            "When le montant de l'activité est modifié puis le paiement est relancé",
+            "Then la ligne existante est mise à jour sans doublon",
+            "And les totaux du bulletin reflètent les nouveaux montants"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "assignations-paiements.md::Bulletins de salaire::Validation des filtres lors de la recherche",
+          "name": "Validation des filtres lors de la recherche",
+          "steps": [
+            "When l'administrateur fournit des filtres non entiers pour année, mois ou bénévole",
+            "Then une erreur est retournée"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "assignations-paiements.md::Bulletins de salaire::Messages traduits lors des opérations",
+          "name": "Messages traduits lors des opérations",
+          "steps": [
+            "When l'administrateur crée, met à jour ou retire une activité du bulletin",
+            "Then un message de confirmation traduit est affiché"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "assignations-paiements.md::Bulletins de salaire::Suppression d'un bulletin",
+          "name": "Suppression d'un bulletin",
+          "steps": [
+            "Given un bulletin existant",
+            "When l'administrateur le supprime",
+            "Then le bulletin n'apparaît plus dans la liste"
+          ],
+          "status": "N/A",
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "id": "assignations-paiements.md::Statut des activités",
+      "title": "Statut des activités",
+      "file": "assignations-paiements.md",
+      "scenarios": [
+        {
+          "id": "assignations-paiements.md::Statut des activités::Création d'une activité planifiée",
+          "name": "Création d'une activité planifiée",
+          "steps": [
+            "Given un administrateur planifie une activité sans bénévoles assignés",
+            "When il enregistre l'activité",
+            "Then le statut de l'activité est \"Planifiée\"",
+            "And le champ \"staffing_status\" est \"Incomplet\""
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "assignations-paiements.md::Statut des activités::Paiement partiel déclenchant En cours de paiement",
+          "name": "Paiement partiel déclenchant En cours de paiement",
+          "steps": [
+            "Given une activité \"À facturer\" avec tous les bénévoles assignés",
+            "And le champ \"staffing_status\" est \"Complet\"",
+            "When l'administrateur enregistre un paiement pour un bénévole",
+            "Then le statut de l'activité devient \"En cours de paiement\"",
+            "And le champ \"staffing_status\" reste \"Complet\""
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "assignations-paiements.md::Statut des activités::Paiements complets puis archivage et désarchivage",
+          "name": "Paiements complets puis archivage et désarchivage",
+          "steps": [
+            "Given une activité \"En cours de paiement\" avec tous les bénévoles assignés",
+            "And le champ \"staffing_status\" est \"Complet\"",
+            "When l'administrateur enregistre les paiements restants",
+            "Then le statut de l'activité devient \"Paiements complets\"",
+            "And le champ \"staffing_status\" reste \"Complet\"",
+            "When il archive l'activité",
+            "Then le statut de l'activité devient \"Archiviée\"",
+            "And le champ \"staffing_status\" reste \"Complet\"",
+            "When il désarchive l'activité",
+            "Then le statut de l'activité redevient \"Paiements complets\"",
+            "And le champ \"staffing_status\" reste \"Complet\""
+          ],
+          "status": "N/A",
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "id": "assignations-paiements.md::Parcours complet",
+      "title": "Parcours complet",
+      "file": "assignations-paiements.md",
+      "scenarios": [
+        {
+          "id": "assignations-paiements.md::Parcours complet::De la création du bénévole au paiement de l'activité",
+          "name": "De la création du bénévole au paiement de l'activité",
+          "steps": [
+            "Given un administrateur authentifié",
+            "When il crée un bénévole avec des données valides",
+            "Then le bénévole est enregistré",
+            "When il planifie une nouvelle activité",
+            "Then l'activité est sauvegardée avec statut \"Planifiée\"",
+            "When il assigne le bénévole à l'activité",
+            "Then la participation du bénévole est enregistrée avec statut \"Planifié\"",
+            "When il enregistre le paiement de la participation",
+            "Then la participation est marquée \"Facturée\"",
+            "And le statut de l'activité devient \"Paiements complets\""
+          ],
+          "status": "N/A",
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "id": "authentification-inscription.md::Authentification",
+      "title": "Authentification",
+      "file": "authentification-inscription.md",
+      "scenarios": [
+        {
+          "id": "authentification-inscription.md::Authentification::L'administrateur se connecte avec succès",
+          "name": "L'administrateur se connecte avec succès",
+          "steps": [
+            "Given un administrateur existe",
+            "When il saisit des identifiants valides",
+            "Then il accède au tableau de bord"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "authentification-inscription.md::Authentification::Échec de connexion avec un mauvais mot de passe",
+          "name": "Échec de connexion avec un mauvais mot de passe",
+          "steps": [
+            "Given un administrateur existe",
+            "When il saisit un mot de passe invalide",
+            "Then l'authentification est refusée"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "authentification-inscription.md::Authentification::Déconnexion",
+          "name": "Déconnexion",
+          "steps": [
+            "Given un utilisateur authentifié",
+            "When il se déconnecte",
+            "Then la session redevient invitée"
+          ],
+          "status": "N/A",
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "id": "authentification-inscription.md::Inscription des bénévoles",
+      "title": "Inscription des bénévoles",
+      "file": "authentification-inscription.md",
+      "scenarios": [
+        {
+          "id": "authentification-inscription.md::Inscription des bénévoles::Auto-inscription d'un candidat",
+          "name": "Auto-inscription d'un candidat",
+          "steps": [
+            "Given aucun bénévole n'existe avec l'adresse email du candidat",
+            "When le candidat soumet le formulaire d'inscription",
+            "Then un bénévole est créé avec le statut \"À valider\""
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "authentification-inscription.md::Inscription des bénévoles::Validation par un administrateur",
+          "name": "Validation par un administrateur",
+          "steps": [
+            "Given un administrateur authentifié",
+            "And un bénévole \"À valider\" existe",
+            "When l'administrateur active le bénévole",
+            "Then son statut devient \"Actif\""
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "authentification-inscription.md::Inscription des bénévoles::Refus d'inscription",
+          "name": "Refus d'inscription",
+          "steps": [
+            "Given un administrateur authentifié",
+            "And un bénévole \"À valider\" existe",
+            "When l'administrateur refuse l'inscription",
+            "Then le bénévole est supprimé",
+            "And le candidat est notifié du refus"
+          ],
+          "status": "N/A",
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "id": "authentification-inscription.md::Réinitialisation du mot de passe",
+      "title": "Réinitialisation du mot de passe",
+      "file": "authentification-inscription.md",
+      "scenarios": [
+        {
+          "id": "authentification-inscription.md::Réinitialisation du mot de passe::Un utilisateur réinitialise son mot de passe",
+          "name": "Un utilisateur réinitialise son mot de passe",
+          "steps": [
+            "Given un utilisateur existe",
+            "When il demande un lien de réinitialisation",
+            "And il définit un nouveau mot de passe via le lien",
+            "Then il se connecte avec le nouveau mot de passe",
+            "And l'ancien mot de passe n'est plus valide"
+          ],
+          "status": "N/A",
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "id": "autorisations-visibilite.md::Visibilité et autorisations",
+      "title": "Visibilité et autorisations",
+      "file": "autorisations-visibilite.md",
+      "scenarios": [
+        {
+          "id": "autorisations-visibilite.md::Visibilité et autorisations::Masquer la colonne Actions pour les non administrateurs",
+          "name": "Masquer la colonne Actions pour les non administrateurs",
+          "steps": [
+            "Given un utilisateur non administrateur",
+            "When il consulte la liste des activités",
+            "Then la colonne Actions est cachée"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "autorisations-visibilite.md::Visibilité et autorisations::Lien vers autres bénévoles caché",
+          "name": "Lien vers autres bénévoles caché",
+          "steps": [
+            "Given un non administrateur",
+            "When il consulte une activité avec plusieurs bénévoles",
+            "Then seul son propre nom est cliquable"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "autorisations-visibilite.md::Visibilité et autorisations::Lien de retour à la liste des pilotes",
+          "name": "Lien de retour à la liste des pilotes",
+          "steps": [
+            "Given la fiche d'un bénévole",
+            "When un utilisateur non administrateur la consulte",
+            "Then le lien \"Retour à la liste des pilotes\" est absent",
+            "When un administrateur la consulte",
+            "Then le lien \"Retour à la liste des pilotes\" est visible"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "autorisations-visibilite.md::Visibilité et autorisations::Suppression interdite aux bénévoles non administrateurs",
+          "name": "Suppression interdite aux bénévoles non administrateurs",
+          "steps": [
+            "Given un bénévole authentifié \"Actif\" sans rôle administrateur",
+            "And un autre bénévole \"Actif\" existe",
+            "When il tente de supprimer ce bénévole",
+            "Then l'action est refusée"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "autorisations-visibilite.md::Visibilité et autorisations::Archivage d'une activité refusé aux non administrateurs",
+          "name": "Archivage d'une activité refusé aux non administrateurs",
+          "steps": [
+            "Given un bénévole authentifié \"Actif\" sans rôle administrateur",
+            "And une activité \"Planifiée\" existe",
+            "When il tente d'archiver l'activité",
+            "Then l'action est refusée"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "autorisations-visibilite.md::Visibilité et autorisations::Accès aux bénéficiaires limité aux administrateurs",
+          "name": "Accès aux bénéficiaires limité aux administrateurs",
+          "steps": [
+            "Given un bénévole authentifié \"Actif\" sans rôle administrateur",
+            "When il consulte la liste des bénéficiaires",
+            "Then l'accès est refusé"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "autorisations-visibilite.md::Visibilité et autorisations::Accès au matériel limité aux administrateurs",
+          "name": "Accès au matériel limité aux administrateurs",
+          "steps": [
+            "Given un bénévole authentifié \"Actif\" sans rôle administrateur",
+            "When il consulte la liste du matériel",
+            "Then l'accès est refusé"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "autorisations-visibilite.md::Visibilité et autorisations::Affichage du compteur des réponses positives réservé aux administrateurs",
+          "name": "Affichage du compteur des réponses positives réservé aux administrateurs",
+          "steps": [
+            "Given une activité avec des disponibilités enregistrées",
+            "And un administrateur authentifié",
+            "When il consulte la liste des activités",
+            "Then le compteur des réponses positives des bénévoles est affiché pour ce rôle uniquement"
+          ],
+          "status": "N/A",
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "id": "beneficiaires.md::Bénéficiaires",
+      "title": "Bénéficiaires",
+      "file": "beneficiaires.md",
+      "scenarios": [
+        {
+          "id": "beneficiaires.md::Bénéficiaires::Ajouter un bénéficiaire",
+          "name": "Ajouter un bénéficiaire",
+          "steps": [
+            "Given une activité existante",
+            "When l'administrateur crée un bénéficiaire",
+            "Then il est rattaché à l'activité"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "beneficiaires.md::Bénéficiaires::Mise à jour d'un bénéficiaire",
+          "name": "Mise à jour d'un bénéficiaire",
+          "steps": [
+            "Given un bénéficiaire existant",
+            "When l'administrateur modifie ses informations",
+            "Then les changements sont sauvegardés"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "beneficiaires.md::Bénéficiaires::Suppression d'un bénéficiaire",
+          "name": "Suppression d'un bénéficiaire",
+          "steps": [
+            "Given un bénéficiaire existant",
+            "When l'administrateur le supprime",
+            "Then il est retiré de l'activité"
+          ],
+          "status": "N/A",
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "id": "benevoles.md::Gestion des bénévoles",
+      "title": "Gestion des bénévoles",
+      "file": "benevoles.md",
+      "scenarios": [
+        {
+          "id": "benevoles.md::Gestion des bénévoles::Création d'un bénévole",
+          "name": "Création d'un bénévole",
+          "steps": [
+            "Given un administrateur authentifié",
+            "When il soumet des données valides",
+            "Then le bénévole et l'utilisateur lié sont créés"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "benevoles.md::Gestion des bénévoles::Validation des champs obligatoires",
+          "name": "Validation des champs obligatoires",
+          "steps": [
+            "Given un administrateur authentifié",
+            "When il soumet un formulaire vide",
+            "Then des erreurs indiquent les champs manquants"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "benevoles.md::Gestion des bénévoles::Mise à jour d'un bénévole",
+          "name": "Mise à jour d'un bénévole",
+          "steps": [
+            "Given un bénévole existant et un administrateur authentifié",
+            "When il modifie le bénévole",
+            "Then la fiche est sauvegardée"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "benevoles.md::Gestion des bénévoles::Contrainte d'unicité de l'email",
+          "name": "Contrainte d'unicité de l'email",
+          "steps": [
+            "Given un bénévole existe avec une adresse email",
+            "When un autre bénévole est créé avec la même adresse",
+            "Then la création est refusée"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "benevoles.md::Gestion des bénévoles::Contrainte d'unicité de l'AVS",
+          "name": "Contrainte d'unicité de l'AVS",
+          "steps": [
+            "Given un bénévole existe avec un numéro AVS",
+            "When un autre bénévole est créé avec le même numéro",
+            "Then la création est refusée",
+            "And un message d'erreur signale le numéro AVS déjà utilisé"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "benevoles.md::Gestion des bénévoles::Validation du téléphone et de l'IBAN",
+          "name": "Validation du téléphone et de l'IBAN",
+          "steps": [
+            "Given un administrateur saisit des formats invalides",
+            "Then le formulaire signale des erreurs"
+          ],
+          "status": "N/A",
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "id": "benevoles.md::Spécialisations",
+      "title": "Spécialisations",
+      "file": "benevoles.md",
+      "scenarios": [
+        {
+          "id": "benevoles.md::Spécialisations::Création sans licence obligatoire",
+          "name": "Création sans licence obligatoire",
+          "steps": [
+            "Given un administrateur authentifié",
+            "When il crée une spécialisation sans licence requise",
+            "Then la spécialisation est enregistrée sans licence"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "benevoles.md::Spécialisations::Création avec licence obligatoire",
+          "name": "Création avec licence obligatoire",
+          "steps": [
+            "Given un administrateur authentifié",
+            "When il crée une spécialisation nécessitant une licence",
+            "And il renseigne la date de licence",
+            "Then la spécialisation est enregistrée avec la licence"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "benevoles.md::Spécialisations::Mise à jour d'une spécialisation",
+          "name": "Mise à jour d'une spécialisation",
+          "steps": [
+            "Given une spécialisation existante",
+            "When l'administrateur modifie ses informations",
+            "Then les changements sont sauvegardés"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "benevoles.md::Spécialisations::Suppression d'une spécialisation",
+          "name": "Suppression d'une spécialisation",
+          "steps": [
+            "Given une spécialisation existante",
+            "When l'administrateur la supprime",
+            "Then elle n'apparaît plus dans la liste"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "benevoles.md::Spécialisations::Date de licence obligatoire",
+          "name": "Date de licence obligatoire",
+          "steps": [
+            "Given une spécialisation exigeant une licence",
+            "When la date de licence est vide",
+            "Then une erreur indique que la date est obligatoire"
+          ],
+          "status": "N/A",
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "id": "benevoles.md::Disponibilités",
+      "title": "Disponibilités",
+      "file": "benevoles.md",
+      "scenarios": [
+        {
+          "id": "benevoles.md::Disponibilités::Un bénévole déclare sa disponibilité pour une activité",
+          "name": "Un bénévole déclare sa disponibilité pour une activité",
+          "steps": [
+            "Given un bénévole authentifié et une activité future",
+            "When il indique qu'il est disponible",
+            "Then sa disponibilité est enregistrée pour l'activité"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "benevoles.md::Disponibilités::Affichage",
+          "name": "Affichage",
+          "steps": [
+            "Given un bénévole a une activité concurrente",
+            "When il consulte l'activité",
+            "Then les boutons sont masqués",
+            "And le texte \"Vous avez déjà une activité à ce moment\" apparaît"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "benevoles.md::Disponibilités::Réponse positive",
+          "name": "Réponse positive",
+          "steps": [
+            "Given un bénévole sans activité concurrente n'a pas encore répondu",
+            "When il clique sur \"Oui\"",
+            "Then le texte \"Vous êtes dispo\" apparaît",
+            "And un bouton \"Modifier\" remplace les boutons"
+          ],
+          "status": "N/A",
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "id": "benevoles.md::Filtrage des bénévoles",
+      "title": "Filtrage des bénévoles",
+      "file": "benevoles.md",
+      "scenarios": [
+        {
+          "id": "benevoles.md::Filtrage des bénévoles::Filtrer les bénévoles par activité planifiée",
+          "name": "Filtrer les bénévoles par activité planifiée",
+          "steps": [
+            "Given des bénévoles avec et sans activité planifiée",
+            "When l'administrateur filtre par \"planifie\"",
+            "Then seuls les bénévoles concernés sont listés"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "benevoles.md::Filtrage des bénévoles::Filtrer par statut ou spécialisation",
+          "name": "Filtrer par statut ou spécialisation",
+          "steps": [
+            "Given des bénévoles avec différents statuts et spécialisations",
+            "When l'administrateur applique un filtre par statut ou spécialisation",
+            "Then seuls les bénévoles correspondants sont affichés"
+          ],
+          "status": "N/A",
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "id": "benevoles.md::Pagination des bénévoles",
+      "title": "Pagination des bénévoles",
+      "file": "benevoles.md",
+      "scenarios": [
+        {
+          "id": "benevoles.md::Pagination des bénévoles::Afficher 15 bénévoles par page",
+          "name": "Afficher 15 bénévoles par page",
+          "steps": [
+            "Given plus de 15 bénévoles existent",
+            "When l'administrateur consulte la page 2 de la liste",
+            "Then 15 bénévoles sont affichés"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "benevoles.md::Pagination des bénévoles::Rejet d'un paramètre de page invalide",
+          "name": "Rejet d'un paramètre de page invalide",
+          "steps": [
+            "Given l'administrateur fournit un paramètre de page non valide",
+            "When il consulte la liste des bénévoles",
+            "Then une erreur indique que le paramètre \"page\" est incorrect"
+          ],
+          "status": "N/A",
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "id": "benevoles.md::Statut du bénévole",
+      "title": "Statut du bénévole",
+      "file": "benevoles.md",
+      "scenarios": [
+        {
+          "id": "benevoles.md::Statut du bénévole::Désactivation d'un bénévole",
+          "name": "Désactivation d'un bénévole",
+          "steps": [
+            "Given un bénévole \"Actif\" et un administrateur",
+            "When l'administrateur le désactive",
+            "Then son statut devient \"Inactif\"",
+            "And une notification est envoyée"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "benevoles.md::Statut du bénévole::Activation d'un bénévole",
+          "name": "Activation d'un bénévole",
+          "steps": [
+            "Given un bénévole \"Inactif\" et un administrateur",
+            "When l'administrateur l'active",
+            "Then son statut devient \"Actif\"",
+            "And une notification est envoyée"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "benevoles.md::Statut du bénévole::Attribution du rôle administrateur",
+          "name": "Attribution du rôle administrateur",
+          "steps": [
+            "Given un bénévole \"Actif\" sans rôle administrateur",
+            "When un administrateur lui attribue le rôle",
+            "Then le bénévole devient administrateur"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "benevoles.md::Statut du bénévole::Retrait du rôle administrateur",
+          "name": "Retrait du rôle administrateur",
+          "steps": [
+            "Given un bénévole administrateur",
+            "When un administrateur retire le rôle",
+            "Then le bénévole n'est plus administrateur"
+          ],
+          "status": "N/A",
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "id": "gestion-du-compte.md::Gestion du compte",
+      "title": "Gestion du compte",
+      "file": "gestion-du-compte.md",
+      "scenarios": [
+        {
+          "id": "gestion-du-compte.md::Gestion du compte::Mise à jour du profil",
+          "name": "Mise à jour du profil",
+          "steps": [
+            "Given un administrateur authentifié lié à un bénévole",
+            "When il modifie ses informations",
+            "Then l'utilisateur et le bénévole sont mis à jour"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "gestion-du-compte.md::Gestion du compte::Validation d'unicité de l'email",
+          "name": "Validation d'unicité de l'email",
+          "steps": [
+            "Given deux utilisateurs existent",
+            "When l'un tente de changer son email pour celui de l'autre",
+            "Then une erreur signale l'email déjà pris"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "gestion-du-compte.md::Gestion du compte::Confirmation incorrecte du mot de passe",
+          "name": "Confirmation incorrecte du mot de passe",
+          "steps": [
+            "Given un administrateur authentifié",
+            "When il saisit deux mots de passe différents",
+            "Then la mise à jour est refusée"
+          ],
+          "status": "N/A",
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "id": "materiel.md::Matériel",
+      "title": "Matériel",
+      "file": "materiel.md",
+      "scenarios": [
+        {
+          "id": "materiel.md::Matériel::Création de matériel",
+          "name": "Création de matériel",
+          "steps": [
+            "Given un administrateur authentifié",
+            "When il fournit les informations requises",
+            "Then le matériel est ajouté à la liste"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "materiel.md::Matériel::Enregistrement d'une révision",
+          "name": "Enregistrement d'une révision",
+          "steps": [
+            "Given un matériel existant",
+            "When sa date de révision change",
+            "Then une entrée d'historique est créée"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "materiel.md::Matériel::Affectation d'un matériel disponible",
+          "name": "Affectation d'un matériel disponible",
+          "steps": [
+            "Given une activité et un matériel non loué sur la période",
+            "When l'administrateur l'affecte à l'activité",
+            "Then l'affectation est enregistrée"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "materiel.md::Matériel::Rejet d'une affectation pour chevauchement",
+          "name": "Rejet d'une affectation pour chevauchement",
+          "steps": [
+            "Given un matériel déjà loué sur la période",
+            "When l'administrateur tente de l'affecter à une autre activité sur la même période",
+            "Then l'affectation est refusée"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "materiel.md::Matériel::Retrait d'un matériel affecté",
+          "name": "Retrait d'un matériel affecté",
+          "steps": [
+            "Given une activité avec un matériel affecté",
+            "When l'administrateur retire le matériel",
+            "Then le matériel redevient disponible pour d'autres activités"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "materiel.md::Matériel::Filtrer le matériel par nom",
+          "name": "Filtrer le matériel par nom",
+          "steps": [
+            "Given plusieurs matériels existent avec des noms différents",
+            "When l'administrateur filtre la liste par nom",
+            "Then seuls les matériels correspondant au nom recherché sont affichés"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "materiel.md::Matériel::Filtrer le matériel par disponibilité",
+          "name": "Filtrer le matériel par disponibilité",
+          "steps": [
+            "Given du matériel disponible et du matériel loué existent",
+            "When l'administrateur filtre la liste par disponibilité",
+            "Then seuls les matériels correspondant à la disponibilité choisie sont affichés"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "materiel.md::Matériel::Paramètres de filtrage invalides",
+          "name": "Paramètres de filtrage invalides",
+          "steps": [
+            "Given un administrateur authentifié",
+            "When il fournit des paramètres de filtrage invalides",
+            "Then la liste n'est pas filtrée",
+            "And un message d'erreur est affiché"
+          ],
+          "status": "N/A",
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "id": "materiel.md::Locations de matériel",
+      "title": "Locations de matériel",
+      "file": "materiel.md",
+      "scenarios": [
+        {
+          "id": "materiel.md::Locations de matériel::Contacts obligatoires",
+          "name": "Contacts obligatoires",
+          "steps": [
+            "Given une activité de type \"Location de matériel\"",
+            "When l'administrateur omet les informations de contact",
+            "Then la création est refusée"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "materiel.md::Locations de matériel::Mise à jour du paiement de la location",
+          "name": "Mise à jour du paiement de la location",
+          "steps": [
+            "Given une location passée",
+            "When l'administrateur saisit le montant payé",
+            "Then la location est marquée payée"
+          ],
+          "status": "N/A",
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "id": "notifications.md::Notifications de rafraîchissement",
+      "title": "Notifications de rafraîchissement",
+      "file": "notifications.md",
+      "scenarios": [
+        {
+          "id": "notifications.md::Notifications de rafraîchissement::Afficher un indicateur lorsqu'un rafraîchissement est dû",
+          "name": "Afficher un indicateur lorsqu'un rafraîchissement est dû",
+          "steps": [
+            "Given un bénévole avec une spécialisation expirée",
+            "When l'administrateur consulte la liste",
+            "Then un indicateur de rafraîchissement apparaît"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "notifications.md::Notifications de rafraîchissement::Envoi d'un rappel individuel",
+          "name": "Envoi d'un rappel individuel",
+          "steps": [
+            "Given la variable d'environnement REFRESH_NOTIFICATIONS_ENABLED est activée",
+            "And un bénévole doit rafraîchir une spécialisation",
+            "When l'administrateur déclenche un rappel",
+            "Then un rappel est envoyé au bénévole",
+            "And une entrée est enregistrée dans la table refresh_notifications"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "notifications.md::Notifications de rafraîchissement::Envoi groupé pour plusieurs bénévoles",
+          "name": "Envoi groupé pour plusieurs bénévoles",
+          "steps": [
+            "Given la variable d'environnement REFRESH_NOTIFICATIONS_ENABLED est activée",
+            "And plusieurs bénévoles doivent rafraîchir une spécialisation",
+            "When l'administrateur déclenche un rappel groupé",
+            "Then chaque bénévole reçoit un rappel",
+            "And une entrée est enregistrée pour chaque rappel dans refresh_notifications"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "notifications.md::Notifications de rafraîchissement::Limitation à un rappel par 30 jours pour un même binôme bénévole/spécialisation",
+          "name": "Limitation à un rappel par 30 jours pour un même binôme bénévole/spécialisation",
+          "steps": [
+            "Given la variable d'environnement REFRESH_NOTIFICATIONS_ENABLED est activée",
+            "And un rappel a été envoyé pour un bénévole et une spécialisation il y a moins de 30 jours",
+            "When l'administrateur tente de renvoyer un rappel",
+            "Then aucun nouveau rappel n'est envoyé",
+            "And aucune nouvelle entrée n'est ajoutée à refresh_notifications"
+          ],
+          "status": "N/A",
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "id": "notifications.md::Rappels de disponibilité",
+      "title": "Rappels de disponibilité",
+      "file": "notifications.md",
+      "scenarios": [
+        {
+          "id": "notifications.md::Rappels de disponibilité::Un administrateur copie un rappel de disponibilité",
+          "name": "Un administrateur copie un rappel de disponibilité",
+          "steps": [
+            "Given une activité sans réponses de disponibilité",
+            "When l'administrateur copie un rappel de disponibilité",
+            "Then le message est placé dans le presse-papiers de l'administrateur"
+          ],
+          "status": "N/A",
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "id": "salaires.md::Gestion des bulletins de salaire",
+      "title": "Gestion des bulletins de salaire",
+      "file": "salaires.md",
+      "scenarios": [
+        {
+          "id": "salaires.md::Gestion des bulletins de salaire::Consulter les bulletins récents",
+          "name": "Consulter les bulletins récents",
+          "steps": [
+            "Given un administrateur authentifié",
+            "And des bulletins générés pour plusieurs bénévoles",
+            "When il ouvre le module « Salaires »",
+            "Then les bulletins correspondants s'affichent avec les montants et périodes"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "salaires.md::Gestion des bulletins de salaire::Prévisualiser un bulletin en brouillon",
+          "name": "Prévisualiser un bulletin en brouillon",
+          "steps": [
+            "Given un administrateur authentifié",
+            "And un bulletin non généré pour un pilote",
+            "When il clique sur l'icône « Prévisualiser »",
+            "Then le PDF s'ouvre avec un filigrane « BROUILLON »",
+            "And le bulletin reste marqué comme non généré"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "salaires.md::Gestion des bulletins de salaire::Marquer un bulletin comme payé",
+          "name": "Marquer un bulletin comme payé",
+          "steps": [
+            "Given un bulletin avec le statut « En attente »",
+            "When l'administrateur indique la date de paiement",
+            "Then le bulletin passe au statut « Payé »",
+            "And la date de paiement est enregistrée"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "salaires.md::Gestion des bulletins de salaire::Modifier le détail d'un bulletin",
+          "name": "Modifier le détail d'un bulletin",
+          "steps": [
+            "Given un bulletin existant avec plusieurs activités",
+            "When l'administrateur ajuste les montants ou commentaires",
+            "Then les changements sont sauvegardés",
+            "And le total du bulletin est recalculé"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "salaires.md::Gestion des bulletins de salaire::Générer plusieurs bulletins et notifier les pilotes",
+          "name": "Générer plusieurs bulletins et notifier les pilotes",
+          "steps": [
+            "Given des bulletins sélectionnés pour différents pilotes",
+            "When l'administrateur confirme la génération groupée",
+            "Then chaque bulletin est marqué comme généré avec la date et l'auteur",
+            "And un email informe chaque pilote que la fiche est disponible dans dsplanif",
+            "And un message récapitulatif indique le nombre de bulletins générés"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "salaires.md::Gestion des bulletins de salaire::Régénérer un bulletin après modification",
+          "name": "Régénérer un bulletin après modification",
+          "steps": [
+            "Given un bulletin généré existant",
+            "And l'administrateur met à jour ses montants",
+            "When il relance la génération du bulletin",
+            "Then une nouvelle version du PDF est produite avec les valeurs mises à jour",
+            "And le filigrane de validation reflète la nouvelle date"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "salaires.md::Gestion des bulletins de salaire::Archiver un bulletin",
+          "name": "Archiver un bulletin",
+          "steps": [
+            "Given un bulletin payé",
+            "When l'administrateur l'archive",
+            "Then le bulletin disparaît de la liste active",
+            "And reste consultable dans la vue des archives"
+          ],
+          "status": "N/A",
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "id": "salaires.md::Export et envoi des salaires",
+      "title": "Export et envoi des salaires",
+      "file": "salaires.md",
+      "scenarios": [
+        {
+          "id": "salaires.md::Export et envoi des salaires::Exporter les bulletins filtrés",
+          "name": "Exporter les bulletins filtrés",
+          "steps": [
+            "Given un administrateur a sélectionné une période et certains bulletins",
+            "When il clique sur « Exporter les salaires affichés »",
+            "Then un fichier Excel est généré avec uniquement les bulletins filtrés",
+            "And le nom du fichier reprend la période, la date et l'heure d'export"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "salaires.md::Export et envoi des salaires::Exporter toutes les lignes visibles sans sélection",
+          "name": "Exporter toutes les lignes visibles sans sélection",
+          "steps": [
+            "Given un administrateur a filtré la liste sans cocher de bulletins",
+            "When il lance l'export",
+            "Then toutes les lignes correspondant aux filtres sont incluses dans le fichier"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "salaires.md::Export et envoi des salaires::Envoyer les bulletins à Bexio",
+          "name": "Envoyer les bulletins à Bexio",
+          "steps": [
+            "Given des adresses configurées dans l'onglet « Envois Bexio »",
+            "And des bulletins filtrés ou sélectionnés",
+            "When l'administrateur clique sur « Envoyer à Bexio »",
+            "Then un email est envoyé aux adresses configurées avec le fichier Excel en pièce jointe",
+            "And un message de confirmation récapitule le nombre de bulletins et périodes"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "salaires.md::Export et envoi des salaires::Empêcher l'envoi sans destinataire",
+          "name": "Empêcher l'envoi sans destinataire",
+          "steps": [
+            "Given aucune adresse configurée pour les envois Bexio",
+            "When l'administrateur tente l'envoi",
+            "Then une erreur l'invite à compléter la configuration"
+          ],
+          "status": "N/A",
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "id": "salaires.md::Paramétrages des salaires",
+      "title": "Paramétrages des salaires",
+      "file": "salaires.md",
+      "scenarios": [
+        {
+          "id": "salaires.md::Paramétrages des salaires::Créer un tarif de salaire",
+          "name": "Créer un tarif de salaire",
+          "steps": [
+            "Given un administrateur accède à l'onglet « Salaires » des paramétrages",
+            "When il ajoute un nouveau tarif avec un nom et un montant",
+            "Then le tarif apparaît dans la liste triée par ordre alphabétique"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "salaires.md::Paramétrages des salaires::Mettre à jour un tarif de salaire",
+          "name": "Mettre à jour un tarif de salaire",
+          "steps": [
+            "Given un tarif de salaire existant",
+            "When l'administrateur modifie son nom ou son montant",
+            "Then la liste reflète les nouvelles valeurs"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "salaires.md::Paramétrages des salaires::Supprimer un tarif de salaire",
+          "name": "Supprimer un tarif de salaire",
+          "steps": [
+            "Given un tarif de salaire inutilisé",
+            "When l'administrateur confirme la suppression",
+            "Then le tarif disparaît des paramétrages"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "salaires.md::Paramétrages des salaires::Préparer l'envoi Bexio",
+          "name": "Préparer l'envoi Bexio",
+          "steps": [
+            "Given l'administrateur se trouve sur l'onglet « Envois Bexio »",
+            "When il ajoute une adresse email de destination",
+            "Then l'adresse est enregistrée et disponible pour les futurs envois"
+          ],
+          "status": "N/A",
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "id": "tableau-de-bord.md::Tableau de bord",
+      "title": "Tableau de bord",
+      "file": "tableau-de-bord.md",
+      "scenarios": [
+        {
+          "id": "tableau-de-bord.md::Tableau de bord::Lister les activités à venir en mettant les incomplètes en premier",
+          "name": "Lister les activités à venir en mettant les incomplètes en premier",
+          "steps": [
+            "Given plusieurs activités planifiées, certaines complètes et d'autres incomplètes",
+            "And une activité passée existe",
+            "When l'administrateur consulte le tableau de bord",
+            "Then seules les activités à venir sont listées",
+            "And les activités incomplètes apparaissent avant les complètes"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "tableau-de-bord.md::Tableau de bord::Trier les bénévoles par nombre de paiements en attente",
+          "name": "Trier les bénévoles par nombre de paiements en attente",
+          "steps": [
+            "Given plusieurs bénévoles avec des paiements en attente",
+            "When l'administrateur trie les bénévoles par paiements en attente",
+            "Then la liste est ordonnée par nombre décroissant de paiements en attente"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "tableau-de-bord.md::Tableau de bord::Rafraîchir le cache du tableau de bord après confirmation d'une activité",
+          "name": "Rafraîchir le cache du tableau de bord après confirmation d'une activité",
+          "steps": [
+            "Given une activité \"Planifiée\" et des données en cache pour le tableau de bord",
+            "When l'activité est confirmée",
+            "Then le cache du tableau de bord est rafraîchi"
+          ],
+          "status": "N/A",
+          "comment": ""
+        },
+        {
+          "id": "tableau-de-bord.md::Tableau de bord::Afficher les badges de compte sur le tableau de bord",
+          "name": "Afficher les badges de compte sur le tableau de bord",
+          "steps": [
+            "Given des bénévoles à activer, des paiements en attente, des confirmations en attente, des rappels de rafraîchissement et des activités incomplètes",
+            "When l'administrateur consulte le tableau de bord",
+            "Then des badges indiquent les nombres de bénévoles à activer, de paiements en attente, de confirmations en attente, de rappels de rafraîchissement à envoyer et d'activités incomplètes"
+          ],
+          "status": "N/A",
+          "comment": ""
+        }
+      ]
+    }
+  ]
+}

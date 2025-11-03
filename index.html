@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tableau de tests Gherkin</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.10.2/dist/full.css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./assets/styles.css" />
+  </head>
+  <body class="min-h-screen bg-base-200">
+    <header class="navbar bg-base-100 shadow">
+      <div class="flex-1 px-4">
+        <h1 class="text-2xl font-bold">Tableau de tests Gherkin</h1>
+      </div>
+      <div class="flex-none gap-2 px-4">
+        <button id="generateButton" class="btn btn-outline btn-primary">
+          Générer les scénarios
+        </button>
+        <button id="downloadButton" class="btn btn-outline btn-secondary">
+          Exporter le JSON
+        </button>
+      </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-6">
+      <section class="mb-6 grid gap-4 md:grid-cols-2">
+        <article class="card bg-base-100 shadow">
+          <div class="card-body">
+            <h2 class="card-title">Instructions</h2>
+            <p>
+              Sélectionnez un statut pour chaque scénario et ajoutez un commentaire si
+              nécessaire. Les changements sont enregistrés automatiquement dans votre
+              navigateur et peuvent être exportés au format JSON.
+            </p>
+          </div>
+        </article>
+        <article class="card bg-base-100 shadow">
+          <div class="card-body">
+            <h2 class="card-title">Statut des sauvegardes</h2>
+            <p id="statusMessage" class="text-sm opacity-70">
+              Chargement des scénarios…
+            </p>
+          </div>
+        </article>
+      </section>
+
+      <section id="tabsContainer" class="bg-base-100 shadow rounded-box">
+        <div class="p-6 text-center text-base-content/60">
+          Chargement en cours…
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="./js/main.js"></script>
+  </body>
+</html>

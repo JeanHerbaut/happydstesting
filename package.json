@@ -1,0 +1,12 @@
+{
+  "name": "happydstesting",
+  "version": "1.0.0",
+  "description": "Tableau de test Gherkin pour GitHub Pages",
+  "type": "module",
+  "scripts": {
+    "generate": "node ./scripts/generate-scenarios.mjs"
+  },
+  "keywords": ["gherkin", "testing", "daisyui"],
+  "author": "",
+  "license": "MIT"
+}
