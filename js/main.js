@@ -1,4 +1,5 @@
 const STATUS_OPTIONS = [
+  { value: '-', label: '-', badgeClass: 'badge badge-outline' },
   { value: 'OK', label: 'OK', badgeClass: 'badge badge-success' },
   { value: 'KO', label: 'KO', badgeClass: 'badge badge-error' },
   { value: 'N/A', label: 'N/A', badgeClass: 'badge badge-neutral' },
@@ -63,10 +64,13 @@ function applyPersistedState(features) {
   const persisted = getPersistedScenarioMap();
   features.forEach((feature) => {
     feature.scenarios.forEach((scenario) => {
+      scenario.featureId = feature.id;
       const existing = persisted[scenario.id];
       if (existing) {
-        scenario.status = existing.status;
-        scenario.comment = existing.comment;
+        scenario.status = existing.status || '-';
+        scenario.comment = existing.comment || '';
+      } else if (!scenario.status) {
+        scenario.status = '-';
       }
     });
   });
@@ -93,12 +97,22 @@ function renderTabs() {
   header.className = 'tabs tabs-boxed bg-base-200 p-2 flex flex-wrap gap-2';
 
   state.features.forEach((feature) => {
+    const summary = computeFeatureSummary(feature);
     const tab = document.createElement('button');
     tab.setAttribute('role', 'tab');
-    tab.className = `tab whitespace-nowrap ${
+    tab.dataset.featureId = feature.id;
+    tab.className = `tab tab-with-status whitespace-nowrap ${
       feature.id === state.activeFeatureId ? 'tab-active' : ''
     }`;
-    tab.textContent = feature.title;
+    const tabTitle = document.createElement('span');
+    tabTitle.textContent = feature.title;
+    tab.appendChild(tabTitle);
+
+    const badge = document.createElement('span');
+    badge.className = `tab-status-badge ${summary.badgeClass}`;
+    badge.dataset.featureId = feature.id;
+    badge.textContent = summary.badgeLabel;
+    tab.appendChild(badge);
     tab.addEventListener('click', () => {
       state.activeFeatureId = feature.id;
       renderTabs();
@@ -124,11 +138,18 @@ function renderTabs() {
     subtitle.textContent = `Source : ${activeFeature.file}`;
     content.appendChild(subtitle);
 
+    const summary = computeFeatureSummary(activeFeature);
+    const metrics = document.createElement('p');
+    metrics.className = 'feature-summary text-sm font-medium';
+    metrics.dataset.featureId = activeFeature.id;
+    metrics.textContent = formatFeatureSummaryText(summary);
+    content.appendChild(metrics);
+
     const grid = document.createElement('div');
     grid.className = 'scenario-grid';
 
     activeFeature.scenarios.forEach((scenario) => {
-      grid.appendChild(createScenarioCard(scenario));
+      grid.appendChild(createScenarioCard(scenario, activeFeature));
     });
 
     content.appendChild(grid);
@@ -138,7 +159,7 @@ function renderTabs() {
   tabsContainer.appendChild(content);
 }
 
-function createScenarioCard(scenario) {
+function createScenarioCard(scenario, feature) {
   const card = document.createElement('article');
   card.className = 'card bg-base-100 shadow';
 
@@ -199,6 +220,7 @@ function createScenarioCard(scenario) {
     scenario.status = value;
     updateBadge(badge, value);
     saveScenarioChange(scenario);
+    updateFeatureIndicators(feature.id);
   });
 
   selectWrapper.appendChild(selectLabel);
@@ -242,6 +264,91 @@ function updateBadge(badge, status) {
   }
   badge.className = info.badgeClass;
   badge.textContent = info.label;
+}
+
+function computeFeatureSummary(feature) {
+  const counts = {
+    total: feature.scenarios.length,
+    tested: 0,
+    pending: 0,
+    ok: 0,
+    ko: 0,
+    na: 0,
+    fix: 0,
+  };
+
+  feature.scenarios.forEach((scenario) => {
+    const status = scenario.status || '-';
+    if (status !== '-') {
+      counts.tested += 1;
+    } else {
+      counts.pending += 1;
+    }
+    switch (status) {
+      case 'OK':
+        counts.ok += 1;
+        break;
+      case 'KO':
+        counts.ko += 1;
+        break;
+      case 'N/A':
+        counts.na += 1;
+        break;
+      case 'FIX':
+        counts.fix += 1;
+        break;
+      default:
+        break;
+    }
+  });
+
+  const badgeState = determineBadgeState(counts);
+  return {
+    ...counts,
+    badgeClass: badgeState.className,
+    badgeLabel: badgeState.label,
+  };
+}
+
+function determineBadgeState(counts) {
+  if (!counts.total || counts.pending === counts.total) {
+    return { className: 'tab-status-badge--none', label: 'Non testé' };
+  }
+  if (counts.ok === counts.total) {
+    return { className: 'tab-status-badge--complete', label: 'Terminé' };
+  }
+  return { className: 'tab-status-badge--progress', label: 'En cours' };
+}
+
+function formatFeatureSummaryText(summary) {
+  return `Nombre de scénarios: ${summary.total}, nombre de scénario testé: ${summary.tested}, OK ${summary.ok}, KO ${summary.ko}, N/A ${summary.na}, FIX ${summary.fix}`;
+}
+
+function updateFeatureIndicators(featureId) {
+  const feature = state.features.find((item) => item.id === featureId);
+  if (!feature) {
+    return;
+  }
+  const summary = computeFeatureSummary(feature);
+  const tab = tabsContainer?.querySelector(
+    `[role="tab"][data-feature-id="${featureId}"]`,
+  );
+  if (tab) {
+    const badge = tab.querySelector('.tab-status-badge');
+    if (badge) {
+      badge.className = `tab-status-badge ${summary.badgeClass}`;
+      badge.textContent = summary.badgeLabel;
+    }
+  }
+
+  if (state.activeFeatureId === featureId) {
+    const summaryElement = tabsContainer?.querySelector(
+      `.feature-summary[data-feature-id="${featureId}"]`,
+    );
+    if (summaryElement) {
+      summaryElement.textContent = formatFeatureSummaryText(summary);
+    }
+  }
 }
 
 function saveScenarioChange(scenario) {
@@ -315,6 +422,8 @@ async function loadInitialData() {
 }
 
 function normalizeFeature(feature) {
+  const fallbackId = `${feature.file || 'source'}::${feature.title}`;
+  const featureId = feature.id || fallbackId;
   const scenarios = Array.isArray(feature.scenarios)
     ? feature.scenarios.map((scenario) => ({
         id:
@@ -322,12 +431,13 @@ function normalizeFeature(feature) {
           makeScenarioId(feature.file || 'inconnu', feature.title, scenario.name),
         name: scenario.name,
         steps: Array.isArray(scenario.steps) ? scenario.steps : [],
-        status: scenario.status || 'N/A',
+        status: scenario.status || '-',
         comment: scenario.comment || '',
+        featureId,
       }))
     : [];
   return {
-    id: feature.id || `${feature.file || 'source'}::${feature.title}`,
+    id: featureId,
     title: feature.title,
     file: feature.file,
     scenarios,
@@ -355,10 +465,11 @@ async function generateFromSources() {
       const parsed = parseGherkinContent(content, file);
       parsed.forEach((feature) => {
         feature.scenarios.forEach((scenario) => {
+          scenario.featureId = feature.id;
           const existing = persisted[scenario.id];
           if (existing) {
-            scenario.status = existing.status;
-            scenario.comment = existing.comment;
+            scenario.status = existing.status || '-';
+            scenario.comment = existing.comment || '';
           }
         });
         features.push(feature);
@@ -400,6 +511,7 @@ function parseGherkinContent(content, fileName) {
       }
       if (trimmed.startsWith('Feature:')) {
         if (currentScenario && currentFeature) {
+          currentScenario.featureId = currentFeature.id;
           currentFeature.scenarios.push(currentScenario);
           currentScenario = null;
         }
@@ -418,6 +530,7 @@ function parseGherkinContent(content, fileName) {
           return;
         }
         if (currentScenario) {
+          currentScenario.featureId = currentFeature.id;
           currentFeature.scenarios.push(currentScenario);
         }
         const name = trimmed.replace(/^Scenario(?: Outline)?:/, '').trim();
@@ -425,8 +538,9 @@ function parseGherkinContent(content, fileName) {
           id: makeScenarioId(fileName, currentFeature.title, name),
           name,
           steps: [],
-          status: 'N/A',
+          status: '-',
           comment: '',
+          featureId: currentFeature.id,
         };
       } else if (currentScenario) {
         currentScenario.steps.push(trimmed);
@@ -434,6 +548,7 @@ function parseGherkinContent(content, fileName) {
     });
 
     if (currentScenario && currentFeature) {
+      currentScenario.featureId = currentFeature.id;
       currentFeature.scenarios.push(currentScenario);
     }
     if (currentFeature) {
