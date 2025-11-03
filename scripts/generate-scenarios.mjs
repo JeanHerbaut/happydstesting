@@ -1,5 +1,6 @@
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
+import { pathToFileURL } from 'node:url';
 
 const GHERKIN_DIR = path.resolve('gherkin');
 const DATA_DIR = path.resolve('data');
@@ -111,7 +112,7 @@ function parseGherkinContent(content, fileName) {
   return features;
 }
 
-async function generate() {
+export async function generate() {
   await ensureDataDir();
   const [files, existing] = await Promise.all([
     listGherkinFiles(),
@@ -158,7 +159,12 @@ async function generate() {
   console.log(`✅ Liste des fichiers sauvegardée dans ${FILES_JSON}`);
 }
 
-generate().catch((error) => {
-  console.error('Erreur lors de la génération des scénarios:', error);
-  process.exitCode = 1;
-});
+if (
+  process.argv[1] &&
+  import.meta.url === pathToFileURL(process.argv[1]).href
+) {
+  generate().catch((error) => {
+    console.error('Erreur lors de la génération des scénarios:', error);
+    process.exitCode = 1;
+  });
+}
